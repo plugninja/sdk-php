@@ -7,7 +7,7 @@
     "homepage": "https://plug.ninja",
     "require": {
         "php": "^8.1",
-        "guzzlehttp/guzzle": "^7.0"
+        "ext-curl": "*"
     },
     "autoload": {
         "psr-4": {
