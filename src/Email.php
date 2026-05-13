@@ -23,11 +23,17 @@ class Email
      * Send a one-time password to an email address.
      *
      * @param string $email
+     * @param array{
+     *   branding?: array{appName?: string, appUrl?: string, logoUrl?: string, primaryColor?: string},
+     *   expiresInMinutes?: int,
+     *   codeLength?: 4|6
+     * } $options
      * @return array{success: bool, message: string}
      */
-    public function sendOtp(string $email): array
+    public function sendOtp(string $email, array $options = []): array
     {
-        return $this->http->post('/email/send-otp', ['email' => $email]);
+        $payload = array_merge(['email' => $email], $options);
+        return $this->http->post('/email/send-otp', $payload);
     }
 
     /**
