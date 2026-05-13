@@ -11,17 +11,28 @@ class Payment
     /**
      * Create a checkout session.
      *
+     * For Mercado Pago Bricks (transparent checkout), the response includes
+     * `preferenceId` and `publicKey` to initialize the Brick on your frontend.
+     *
      * @param array{
      *   amount: int,
-     *   successUrl: string,
      *   currency?: string,
      *   provider?: 'stripe'|'mercadopago',
+     *   successUrl?: string,
      *   cancelUrl?: string,
      *   customerEmail?: string,
      *   title?: string,
      *   metadata?: array<string, string>,
      * } $params
-     * @return array{success: bool, id: string, url: string, provider: string}
+     * @return array{
+     *   success: bool,
+     *   id: string,
+     *   url: string|null,
+     *   provider: string,
+     *   preferenceId?: string,
+     *   publicKey?: string,
+     *   mode?: string,
+     * }
      */
     public function checkout(array $params): array
     {
